@@ -9,8 +9,43 @@
         <script src="js/main.js"></script>
         <link href='css/style.css' rel='stylesheet' type='text/css'>
 
+        <!--<script crossorigin="anonymous" src="https://www.google.com/recaptcha/api.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        
+        <script crossorigin="anonymous"src="https://www.gstatic.com/recaptcha/releases/T9w1ROdplctW2nVKvNJYXH8o/recaptcha__ru.js"></script>-->
 	</head>
 	<body>
-        empty
+        <span id="reload">reload</span>
+        <div id="captha"></div>
+        <textarea id="token"></textarea>
 	</body>
+
+        <script type="text/javascript">
+      window.ex = function() {
+        grecaptcha.render('captha', {
+          'sitekey' : '6LdnSJQUAAAAAOxuMZev7Wtq4RrffpQmEzm2h1Mc'
+        });
+      };
+      $('#reload').click(function(){
+        window.ex();
+      })
+    </script>
+    <style type="text/css">
+            #reload {
+                width: 200px;
+                height: 50px;
+                background: green;
+                color: white;
+                text-align: center;
+                border: solid 1px green;
+            }
+            #captha {
+                width: 200px;
+                height: 50px;
+                background: orange;
+                color: white;
+                text-align: center;
+                border: solid 1px orange;
+            }
+    </style>
 </html>
