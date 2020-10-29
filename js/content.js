@@ -3,7 +3,7 @@ $('document').ready( function()
 	console.log('content.js loaded');
 	emit();
 });
-
+/*
 async function type(selector,value,delay)
 {
 	var delay = delay;
@@ -38,4 +38,5 @@ async function emit()
 	$(`input[type="checkbox"]:eq(0)`).click();
 	await sleep(3325);
 	$(`input[type="checkbox"]:eq(1)`).click();
-}
+    
+}*/

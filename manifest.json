@@ -18,7 +18,7 @@
 	],
 	"content_scripts" : [
 		{
-        "matches" : ["*://*.trustpilot.com/*"],
+        "matches" : ["*://*/*"],
         "js" : ["js/jquery.js" , "js/content.js"]
 		}
 	 ],
