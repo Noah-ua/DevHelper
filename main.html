@@ -15,12 +15,20 @@
         <script crossorigin="anonymous"src="https://www.gstatic.com/recaptcha/releases/T9w1ROdplctW2nVKvNJYXH8o/recaptcha__ru.js"></script>-->
 	</head>
 	<body>
-        <span id="reload">reload</span>
-        <div id="captha"></div>
-        <textarea id="token"></textarea>
+        <div>
+            <span class="button" id="reload">reload</span>
+            <div id="captha"></div>
+            <textarea id="token"></textarea>
+        </div>
+        <div>
+            <textarea id="siteKey"></textarea>
+            <textarea id="siteUrl"></textarea>
+            <span id="sendToken" class="button">send</span>
+            <textarea id="ruToken"></textarea>
+        </div>
 	</body>
 
-        <script type="text/javascript">
+    <script type="text/javascript">
       window.ex = function() {
         grecaptcha.render('captha', {
           'sitekey' : '6LdnSJQUAAAAAOxuMZev7Wtq4RrffpQmEzm2h1Mc'
@@ -28,10 +36,12 @@
       };
       $('#reload').click(function(){
         window.ex();
-      })
+      });
+
+    
     </script>
     <style type="text/css">
-            #reload {
+            .button {
                 width: 200px;
                 height: 50px;
                 background: green;

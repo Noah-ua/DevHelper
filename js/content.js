@@ -3,6 +3,30 @@ $('document').ready( function()
 	console.log('content.js loaded');
 	//emit();
 });
+function inject()
+{
+    if(!!window.grecaptha)
+    {
+        window.o = grecaptcha.render;
+        window.p;
+        grecaptcha.render = function(name, obj)
+        {
+                window.c = obj.callback;
+                window.p = obj;
+                console.log("logged");
+                //grecaptcha.render = window.o;
+                //grecaptcha.render(name, obj);
+                window.o(name, obj);
+        }
+    }
+    else
+    {    
+        console.log("tick");
+        setTimeout(inject,1000);
+    }
+}
+
+
 /*
 async function type(selector,value,delay)
 {

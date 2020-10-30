@@ -1,6 +1,6 @@
 $(document).ready( function()
 {
-	
+	listeners();
 	//start();
 });
 function getCookies(domain, name,callback) 
@@ -84,4 +84,73 @@ function parsCircle()
 		
     }
     tick();
+}
+function listeners()
+{
+	$('#sendToken').click(function()
+    {
+        console.log('click');
+        //const siteKey = $('#siteKey').val();
+        const siteKey = '6LdnSJQUAAAAAOxuMZev7Wtq4RrffpQmEzm2h1Mc';
+        //const siteUrl = $('#siteUrl').val();
+        const siteUrl = 'https://www.trustpilot.com/evaluate/www.google.com?stars=5';
+        const apikey = 'c2f975b79b16b14b802d2f46d6a38645';
+        let link = `https://rucaptcha.com/in.php?key=${apikey}&method=userrecaptcha&googlekey=${siteKey}&pageurl=${siteUrl}&json=1`;
+        createTask(link,siteKey,siteUrl,apikey);
+    });
+    function createTask(link,siteKey,siteUrl,apikey)
+    {
+        xhr(link,"GET",function (body) {
+            try
+            {
+                let obj = JSON.parse(body);
+                console.log(obj);
+                if(obj.status == 1)
+                    checkTask(obj.request,apikey);
+            }
+            catch(e) {console.log(e)}
+        });
+    }
+    function checkTask(id,apikey)
+    {
+        let link = `https://rucaptcha.com/res.php?json=1&id=${id}&action=get&key=${apikey}`;
+        xhr(link,'GET',function(body){
+            try
+            {
+                console.log(body);
+                $('#ruToken').val(body);
+                let obj = JSON.parse(body);
+                if(obj.status == 0)
+                	setTimeout(checkTask,4000,id,apikey);
+            }
+            catch(e) {console.log(e)}
+        });
+    }
+
+    function xhr(link,type,cb,body)
+    {
+        let i = new XMLHttpRequest();
+        i.open(type , link , true);
+        i.timeout = 15000;
+        //i.setRequestHeader(p[1],p[0]);
+        i.ontimeout = function()
+        {}
+        i.onerror = function(err)
+        {}
+        i.onreadystatechange = function()
+        {
+            if(i.readyState == 4)
+            {
+                if(i.status == 200)
+                {
+                    //let obj = JSON.parse(i.responseText);
+                    cb(i.responseText);
+                }
+            }
+        }
+        if(type == 'POST')
+            i.send(body);
+        else
+            i.send();
+    }
 }
