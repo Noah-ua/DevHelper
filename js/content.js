@@ -26,7 +26,25 @@ function inject()
     }
 }
 
+(() => 
+    {
+        let ref = undefined;
+        Object.defineProperty(window, 'grecaptcha', {
+        get() {
+            return ref;
+        },
+        set(grecaptcha) {
+            console.log({grecaptcha});
+            let refRender = grecaptcha.render;
 
+            grecaptcha.render = function(name, obj)
+            {
+                document.callback = obj.callback;
+                console.log("triggered");
+                refRender(name, obj);
+            }
+        }
+    })})();
 /*
 async function type(selector,value,delay)
 {
