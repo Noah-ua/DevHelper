@@ -45,6 +45,19 @@ function inject()
             }
         }
     })})();
+
+
+    let arr = u$('input[type="checkbox"]');
+     for(let i = 0; arr.length; i++)
+    {
+        if( u$(arr[i]).attr("class").indexOf("checkbox") != -1)
+        {
+            if( u$(arr[i]).checked == false)
+            {
+                u$(arr[i]).click();
+            }
+        }
+    }
 /*
 async function type(selector,value,delay)
 {
